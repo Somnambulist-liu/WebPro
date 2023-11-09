@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
 /**
@@ -18,11 +19,17 @@ import java.time.LocalDateTime;
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+    @Resource
     UserMapper userMapper;
+
+    @Override
+    public Result findUserById(int id) {
+        User userDetail = userMapper.findUserById(id);
+        return Result.ok(userDetail);
+    }
+
     @Override
     public Result addUserDetail(User user) {
-        log.info(user.toString());
         user.setCreateTime(LocalDateTime.now());
         user.setUpdateTime(LocalDateTime.now());
         userMapper.insertUser(user);

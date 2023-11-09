@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserMapper {
-    @Select("SELECT id, userName, passWord, createTime, updateTime FROM user_tb")
-    Integer findUsers();
+    @Select("SELECT id, userName, passWord, createTime, updateTime FROM user_tb WHERE id=#{id}")
+    User findUserById(Integer id);
 
     @Insert("INSERT INTO user_tb (userName, passWord, createTime, updateTime) VALUES (#{userName},#{passWord},#{createTime},#{updateTime})")
     Integer insertUser(User user);

@@ -4,10 +4,9 @@ import com.ccst.endserver.entity.Result;
 import com.ccst.endserver.entity.dao.User;
 import com.ccst.endserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @Author liufuping
@@ -17,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("user")
 public class UserController {
-    @Autowired
+    @Resource
     UserService userService;
+    @GetMapping()
+    public Result getUserById(int id){
+        return userService.findUserById(id);
+    }
     @PostMapping()
     public Result addUserDetail(User user){
         return userService.addUserDetail(user);

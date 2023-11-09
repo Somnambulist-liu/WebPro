@@ -9,5 +9,6 @@ import com.ccst.endserver.entity.dao.User;
  * @Version 1.0
  */
 public interface UserService {
+    Result findUserById(int id);
     Result addUserDetail(User user);
 }
