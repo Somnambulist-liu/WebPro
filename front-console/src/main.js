@@ -1,5 +1,11 @@
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
+import router from './router/router.js'
 
-createApp(App).mount('#app')
+import Layui from '@layui/layui-vue'
+import '@layui/layui-vue/lib/index.css'
+
+let app = createApp(App)
+app.use(router);
+app.use(Layui);
+app.mount('#app');

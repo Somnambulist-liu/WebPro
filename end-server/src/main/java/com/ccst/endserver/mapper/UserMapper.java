@@ -18,5 +18,5 @@ public interface UserMapper {
     User findUserById(Integer id);
 
     @Insert("INSERT INTO user_tb (userName, passWord, createTime, updateTime) VALUES (#{userName},#{passWord},#{createTime},#{updateTime})")
-    Integer insertUser(User user);
+    void insertUser(User user);
 }

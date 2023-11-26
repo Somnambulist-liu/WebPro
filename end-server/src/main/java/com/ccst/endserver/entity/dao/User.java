@@ -1,7 +1,8 @@
 package com.ccst.endserver.entity.dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Repository;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,8 @@ import java.time.LocalDateTime;
  * @Version 1.0
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     private Integer id;
     private String userName;
