@@ -4,33 +4,37 @@
         <SideBox/>
       </div>
       <div class="content">
-        <ContentBox/>
+        <router-view></router-view>
       </div>
   </div>
 </template>
 
 <script setup>
-  import ContentBox from './ContentBox.vue';
   import SideBox from './SideBox.vue';
 
 </script>
 
 <style scoped>
 .home-ui {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: #f0fcff;
 }
 .side {
   width: 15%;
-  height: 100vh;
-  background-color: aqua;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #177cb0;
 }
 
 .content {
   width: 85%;
-  height: 100vh;
-  background-color: blue;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 15%;
+  background-color: #ffffff;
 }
 </style>

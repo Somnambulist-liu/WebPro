@@ -1,55 +1,51 @@
 <template>
-    <lay-menu class="sidestyle" :selected-key="selectedKey" @change-selected-Key="changeSelectedKey" @change-open-keys="changeOpenKeys" v-model:openKeys="openKeys2" :tree="true">
-      <div class="title">
-        宿舍管理系统
-      </div>
-      <lay-menu-item id="1">用户管理</lay-menu-item>
-      <lay-menu-item id="2">楼宇管理</lay-menu-item>
-      <lay-menu-item id="3">房间管理</lay-menu-item>
-      <lay-menu-item id="4">宿舍分配</lay-menu-item> 
-      <lay-menu-item id="5">调换审核</lay-menu-item>  
-    </lay-menu>
+    <div class="title">学生管理系统</div>
+    <div class="tags">
+        <div id="tagInfo" @click="toStudentInfo">学生信息</div>
+        <div id="tagInfo" @click="toAddInfo">添加信息</div>
+    </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+    import router from '../router/router';
 
-const openKeys2 = ref(["7"])
-const selectedKey = ref("5")
-const changeSelectedKey = (val) => {
-  selectedKey.value = val;
-}
-
-const changeOpenKeys = (val) => {
-  openKeys2.value = val;
-}
+    function toStudentInfo(){
+        router.push('/student')
+    };
+    function toAddInfo(){
+        router.push('/add')
+    };
 </script>
 
 <style scoped>
-.sidebox{
-  width: 100%;
-  height: 100%;
-  font-size: 14px;
-  padding: 10px;
+.title{
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(7, 7, 7);
 }
-.sidestyle {
-  /* background-color: #001529; */
-  background-color: #001529;
-  color: #fff;
-  font-size: 14px;
-  height: 100%;
-  width: 100%;
-  padding: 10px;
-   
+.tags{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #1685a9;
 }
-
-.title {
-  background-color:#001529;
-  height: 50px;
-  font-size: 20px;
-  font-style: italic;
-  font-weight: 400;
-  text-align: center;
-  color: #fff;
+.tags div{
+    font-size: 22px;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(7, 7, 7);
+}
+#tagInfo:hover{
+    background-color: #1c98c1;
 }
 </style>

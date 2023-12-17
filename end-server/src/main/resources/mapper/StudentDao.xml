@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccst.endserver.dao.StudentDao">
+
+    <resultMap type="com.ccst.endserver.entity.Student" id="StudentTbMap">
+        <result property="studentId" column="student_id" jdbcType="INTEGER"/>
+        <result property="studentName" column="student_name" jdbcType="VARCHAR"/>
+        <result property="studentGender" column="student_gender" jdbcType="VARCHAR"/>
+        <result property="studentClassName" column="student_class_name" jdbcType="VARCHAR"/>
+        <result property="studentMajor" column="student_major" jdbcType="VARCHAR"/>
+        <result property="studentNum" column="student_num" jdbcType="VARCHAR"/>
+        <result property="studentPhone" column="student_phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StudentTbMap">
+        select
+student_id,student_name,student_gender,student_class_name,student_major,student_num,student_phone
+        from student_tb
+        where student_id = #{studentId}
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StudentTbMap">
+        select
+        student_id,student_name,student_gender,student_class_name,student_major,student_num,student_phone
+        from student_tb
+        <where>
+            <if test="studentName != null and studentName != ''">
+                and student_name like concat('%',#{studentName},'%')
+            </if>
+        </where>
+        limit #{pageStart}, #{pageEnd}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from student_tb
+        <where>
+            <if test="studentName != null and studentName != ''">
+                and student_name like concat('%',#{studentName},'%')
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="studentId" useGeneratedKeys="true">
+        insert into student_tb(student_name,student_gender,student_class_name,student_major,student_num,student_phone)
+        values (#{studentName},#{studentGender},#{studentClassName},#{studentMajor},#{studentNum},#{studentPhone})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update student_tb
+        <set>
+            <if test="studentName != null and studentName != ''">
+                student_name = #{studentName},
+            </if>
+            <if test="studentGender != null and studentGender != ''">
+                student_gender = #{studentGender},
+            </if>
+            <if test="studentClassName != null and studentClassName != ''">
+                student_class_name = #{studentClassName},
+            </if>
+            <if test="studentMajor != null and studentMajor != ''">
+                student_major = #{studentMajor},
+            </if>
+            <if test="studentNum != null and studentNum != ''">
+                student_num = #{studentNum},
+            </if>
+            <if test="studentPhone != null and studentPhone != ''">
+                student_phone = #{studentPhone},
+            </if>
+        </set>
+        where student_id = #{studentId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from student_tb where student_id = #{studentId}
+    </delete>
+
+</mapper>
+
